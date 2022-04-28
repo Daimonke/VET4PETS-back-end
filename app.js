@@ -6,7 +6,7 @@ import { medicationsRouter } from './routes/api/medications.js'
 import { logsRouter } from './routes/api/logs.js'
 import { prescriptionsRouter } from './routes/api/prescriptions.js'
 
-const port = process.env.PORT || 3020
+const PORT = process.env.PORT || 3020
 const app = express()
 
 app.use(cors())
@@ -17,4 +17,4 @@ app.use('/api/medications', medicationsRouter)
 app.use('/api/logs', logsRouter)
 app.use('/api/prescriptions', prescriptionsRouter)
 
-app.listen(port, () => console.log(`Server running at http://localhost:${port}`))
+app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`))
