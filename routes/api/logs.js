@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/:id?', async (req, res) => {
     try {
         const [rows] = await con.query(`
-        SELECT *, pets.name, pets.dob, pets.client_email, pets.archived FROM logs
+        SELECT logs.*, pets.name, pets.dob, pets.client_email, pets.archived FROM logs
         JOIN pets ON pets.id = logs.pet_id
         ${req.params.id ? `WHERE pets.id = ?` : ''}
         `, [req.params.id])
