@@ -8,6 +8,7 @@ router.get('/:id?', async (req, res) => {
         const [rows] = await con.query(`
         SELECT logs.*, pets.name, pets.dob, pets.client_email, pets.archived FROM logs
         JOIN pets ON pets.id = logs.pet_id
+        ORDER BY logs.id
         ${req.params.id ? `WHERE pets.id = ?` : ''}
         `, [req.params.id])
         res.send(rows)
