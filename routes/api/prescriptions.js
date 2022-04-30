@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
     try {
         const [rows] = await con.query(`
             INSERT INTO prescriptions
-            (medication_id, pet_id, comment, timestamp)
+            (medication_id, pet_id, comment, assign_time)
             VALUES(?, ?, ?, ?)
             `, [b.medication_id, b.pet_id, b.comment, new Date().toLocaleString('LT')])
         rows.msg ? res.status(400).send(rows.msg) : res.status(200).send({ msg: 'Prescription added'})
