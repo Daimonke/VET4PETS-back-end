@@ -13,6 +13,7 @@ router.get('/:id?', async (req, res) => {
         JOIN pets ON pets.id = prescriptions.pet_id
         JOIN medications ON medications.id = prescriptions.medication_id
         ${req.params.id ? `WHERE prescriptions.pet_id = ?` : ''}
+        ORDER BY prescriptions.id
         `, [req.params.id])
         res.send(rows)
     } catch (err) {
