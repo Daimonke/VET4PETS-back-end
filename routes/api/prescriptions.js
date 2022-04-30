@@ -3,7 +3,7 @@ import express from "express";
 
 const router = express.Router();
 
-router.get('/:id', async (req, res) => {
+router.get('/:id?', async (req, res) => {
     try {
         const [rows] = await con.query(`
         SELECT prescriptions.*,
@@ -12,7 +12,7 @@ router.get('/:id', async (req, res) => {
         FROM prescriptions
         JOIN pets ON pets.id = prescriptions.pet_id
         JOIN medications ON medications.id = prescriptions.medication_id
-        WHERE prescriptions.pet_id = ?
+        ${req.params.id ? `WHERE prescriptions.pet_id = ?` : ''}
         `, [req.params.id])
         res.send(rows)
     } catch (err) {
