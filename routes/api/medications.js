@@ -16,10 +16,10 @@ router.post('/', async (req, res) => {
     try {
         const [rows] = await con.query(`
             INSERT INTO medications
-            (name, description)
+            (medication, description)
             VALUES(?, ?)
             `, [b.name, b.description])
-        rows.msg ? res.status(400).send(rows.msg) : res.status(200).send({ msg: 'Medication added'})
+        rows.msg ? res.status(400).send(rows.msg) : res.status(200).send({ msg: 'Medication added' })
     } catch (err) {
         res.send({ msg: err })
     }
